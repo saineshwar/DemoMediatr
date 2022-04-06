@@ -11,6 +11,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DemoMediatr.Data.Employee.Command;
+using DemoMediatr.Data.Employee.Queries;
+using MediatR;
 
 namespace DemoMediatr.API
 {
@@ -26,6 +29,12 @@ namespace DemoMediatr.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddScoped<IEmployeeQueries, EmployeeQueries>();
+            services.AddScoped<IEmployeeCommand, EmployeeCommand>();
+
+            // Register MediatR services
+            services.AddMediatR(typeof(Startup));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

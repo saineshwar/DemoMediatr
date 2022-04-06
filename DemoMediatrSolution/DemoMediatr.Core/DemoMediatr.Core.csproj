@@ -5,8 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Employee\Commands\" />
-    <Folder Include="Employee\Handler\" />
+    <PackageReference Include="MediatR" Version="10.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DemoMediatr.Data\DemoMediatr.Data.csproj" />
+    <ProjectReference Include="..\DemoMediatr.Models\DemoMediatr.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Employee\Queries\" />
   </ItemGroup>
 
 </Project>
