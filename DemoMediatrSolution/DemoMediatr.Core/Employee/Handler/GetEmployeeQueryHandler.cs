@@ -8,7 +8,7 @@ using MediatR;
 
 namespace DemoMediatr.Core.Employee.Handler
 {
-    public class GetEmployeeQueryHandler : IRequest<Models.Employee>
+    public class GetEmployeeQueryHandler : IRequestHandler<GetEmployeeQuery, List<Models.Employee>>
     {
         private readonly IEmployeeQueries _employeeQueries;
 

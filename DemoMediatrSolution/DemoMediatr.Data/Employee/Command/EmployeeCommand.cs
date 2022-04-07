@@ -4,11 +4,9 @@ namespace DemoMediatr.Data.Employee.Command
 {
     public class EmployeeCommand : IEmployeeCommand
     {
-        public async Task<Models.Employee> Add(Models.Employee Employee)
+        public async Task<Models.Employee> Add(Models.Employee employee)
         {
-            var s = new Models.Employee();
-
-            return s;
+            return employee;
         }
     }
 }

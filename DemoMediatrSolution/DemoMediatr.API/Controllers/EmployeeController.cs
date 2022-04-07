@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DemoMediatr.Core.Employee.Commands;
 using MediatR;
 using DemoMediatr.Data.Employee.Queries;
+using DemoMediatr.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -16,7 +17,7 @@ namespace DemoMediatr.API.Controllers
     public class EmployeeController : ControllerBase
     {
         private readonly IMediator _mediator;
-        
+
         public EmployeeController(IMediator mediator)
         {
             _mediator = mediator;
@@ -35,16 +36,33 @@ namespace DemoMediatr.API.Controllers
         public async Task<IActionResult> Get(int id)
         {
 
-         
+
             var result = await _mediator.Send(new GetEmployeeQuery());
 
             return Ok(result);
         }
 
         // POST api/<EmployeeController>
+        /// <summary>
+        /// Add Employee
+        /// </summary>
+        /// <param name="employee"></param>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] AddEmployeeModel employee)
         {
+            var result = await _mediator.Send(new CreateEmployeeCommand()
+            {
+                Employee = new Employee()
+                {
+                    FirstName = employee.FirstName,
+                    LastName = employee.LastName,
+                    EmployeeId = 1,
+                    Phone = "9878987898",
+                    Age = 50,
+                    Birthday = DateTime.Now
+                }
+            });
+            return Ok(result);
         }
 
         // PUT api/<EmployeeController>/5

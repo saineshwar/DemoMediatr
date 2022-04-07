@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DemoMediatr.Core.Employee.Commands;
+using DemoMediatr.Core.Employee.Handler;
 using DemoMediatr.Data.Employee.Command;
 using DemoMediatr.Data.Employee.Queries;
 using MediatR;
@@ -32,6 +34,9 @@ namespace DemoMediatr.API
 
             services.AddScoped<IEmployeeQueries, EmployeeQueries>();
             services.AddScoped<IEmployeeCommand, EmployeeCommand>();
+            services.AddTransient<IRequestHandler<CreateEmployeeCommand, Models.Employee>, CreateEmployeeCommandHandler>();
+            services.AddTransient<IRequestHandler<GetEmployeeQuery, List<Models.Employee>>, GetEmployeeQueryHandler> ();
+
 
             // Register MediatR services
             services.AddMediatR(typeof(Startup));
